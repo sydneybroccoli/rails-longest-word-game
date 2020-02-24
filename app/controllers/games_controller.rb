@@ -1,26 +1,35 @@
 require 'open-uri'
 
 class GamesController < ApplicationController
-  # LETTERS = Array.new(0)
-  # 10.times do
-  #   LETTERS << ('A'..'Z').to_a.sample
-  # end
+  URL = 'https://wagon-dictionary.herokuapp.com/'
+
+  VOWELS = %w(A E I O U)
+  CONSONANTS = ('A'..'Z').to_a - VOWELS
 
   def new
     @letters = Array.new(0)
-    10.times { @letters << ('A'..'Z').to_a.sample }
+    5.times do
+      @letters << VOWELS.sample
+      @letters << CONSONANTS.sample
+    end
   end
 
   def score
-    @answer = params[:answer]
-    @letters = params[:letters].upcase.chars
-    @data = parse_data
-    @check = validity(@answer.upcase.chars, @letters)
+    letters = params[:letters].upcase.chars
+    time = Time.now - Time.parse(params[:start_time])
+    @output = {
+      answer: params[:answer],
+      letters: letters,
+      data: parse_data(params[:answer]),
+      validity: validity(params[:answer].upcase.chars, letters),
+      score: ((100 / time) + params[:answer].length).round(2)
+    }
   end
 
-  def parse_data
-    url = "https://wagon-dictionary.herokuapp.com/#{@answer}"
-    JSON.parse(open(url).read)
+  private
+
+  def parse_data(query)
+    JSON.parse(open("#{URL}#{query}").read)
   end
 
   def validity(answer, letters)
@@ -32,5 +41,4 @@ class GamesController < ApplicationController
 
     answer_hash.all? { |letter, _| answer_hash[letter] <= letters_hash[letter] }
   end
-
 end

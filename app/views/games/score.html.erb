@@ -4,7 +4,7 @@
    </div>
 
    <div class="letters-container">
-    <% @letters.each do |letter| %>
+    <% @output[:letters].each do |letter| %>
       <ul class="list">
         <li id="letter">
           <%= letter %>
@@ -14,12 +14,18 @@
    </div>
 
    <div class="results-results">
-     <% if  @data['found'] && !@validity %>
-      <p id="results">Sorry. '<em><%= @answer %></em>' does not match the given letters.</p>
-    <% elsif @data['found'] && @validity %>
-      <p id="results">Well Done!</p>
+     <% if  @output[:data]['found'] && !@output[:validity] %>
+      <p id="results">Sorry. '<em><%= @output[:answer] %></em>' does not match the given letters.
+        <br>
+        YOUR SCORE IS: <%= 0 %></p>
+    <% elsif @output[:data]['found'] && @output[:validity] %>
+      <p id="results">Well Done!
+        <br>
+        YOUR SCORE IS: <%= @output[:score] %></p>
     <% else %>
-      <p id="results">Sorry.  '<em><%= @answer %></em>' is not an English word.</p>
+      <p id="results">Sorry.  '<em><%= @output[:answer] %></em>' is not an English word.
+        <br>
+        YOUR SCORE IS: <%= 0 %></p>
     <% end %>
   </div>
 
@@ -27,10 +33,3 @@
     <%= link_to 'TRY A NEW SET OF LETTERS', '/new' %>
   </div>
  </div>
-
-
-
-
-
-
-
