@@ -1,0 +1,72 @@
+// Place all the styles related to the games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-container {
+  display: grid;
+  grid-template-rows: 10% auto auto auto auto;
+  grid-template-columns: 10% auto 10%;
+}
+.header-container {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  justify-self: center;
+}
+.letters-container {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  justify-self: center;
+}
+.letters-container ul {
+  list-style-type: none;
+  padding: 0;
+  display: inline-flex;
+}
+.letters-container li {
+  font-family: monospace;
+  height: 25px;
+  width: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  border: 1px rgb(0,101,255) solid;
+  // border-radius: 50%;
+  padding: 10px;
+  margin: 0 5px;
+  background-color: rgba(0,101,255,0.4);
+}
+.unused {
+  border: 2px red solid;
+}
+.used {
+  border: 2px green solid;
+}
+
+.form-container {
+  grid-row: 4 / 5;
+  grid-column: 2 / 3;
+  justify-self: center;
+  margin: 10px 10px;
+}
+.results-results {
+  grid-row: 4 / 5;
+  grid-column: 2 / 3;
+  justify-self: center;
+  margin: 10px 10px;
+}
+.results-redirect {
+  grid-row: 5 / 6;
+  grid-column: 2 / 3;
+  justify-self: center;
+  margin: 10px 10px;
+}
+.results-redirect a {
+  text-decoration: none;
+
+  &:hover {
+    padding: 5px;
+    border: 1px black solid;
+  }
+}
+

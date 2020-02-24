@@ -1,0 +1,36 @@
+ <div class="main-container">
+   <div class="header-container">
+     <h2>RESULTS</h2>
+   </div>
+
+   <div class="letters-container">
+    <% @letters.each do |letter| %>
+      <ul class="list">
+        <li id="letter">
+          <%= letter %>
+        </li>
+      </ul>
+    <% end %>
+   </div>
+
+   <div class="results-results">
+     <% if  @data['found'] && !@validity %>
+      <p id="results">Sorry. '<em><%= @answer %></em>' does not match the given letters.</p>
+    <% elsif @data['found'] && @validity %>
+      <p id="results">Well Done!</p>
+    <% else %>
+      <p id="results">Sorry.  '<em><%= @answer %></em>' is not an English word.</p>
+    <% end %>
+  </div>
+
+  <div class="results-redirect">
+    <%= link_to 'TRY A NEW SET OF LETTERS', '/new' %>
+  </div>
+ </div>
+
+
+
+
+
+
+
