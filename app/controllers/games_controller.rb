@@ -32,4 +32,5 @@ class GamesController < ApplicationController
 
     answer_hash.all? { |letter, _| answer_hash[letter] <= letters_hash[letter] }
   end
+
 end
