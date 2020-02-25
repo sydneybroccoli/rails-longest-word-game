@@ -30,5 +30,10 @@ class GamesTest < ApplicationSystemTestCase
   end
 
   test "returns congrats if word exists and is english" do
+    visit new_url
+    fill_in "answer", with: ""
+    click_on "SUBMIT!"
+    Capybara.exact = false
+    assert_selector "p#results", text: /.*Congrats.*/
   end
 end
